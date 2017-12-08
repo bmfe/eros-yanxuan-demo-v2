@@ -1,0 +1,103 @@
+.iconfont {
+    font-family: iconfont;
+}
+
+.wrapper {
+    position: fixed;
+    top: 114px;
+    left: 0;
+    right: 0;
+    height: 54px;
+    z-index: 10;
+    background-color: #fafafa;
+    border-bottom-width: 1px;
+    border-bottom-color: #d9d9d9;
+}
+
+.scroller {
+    width: 660px;
+    height: 54px;
+}
+
+.i-c {
+    padding-top: 10px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-bottom: 6px;
+    font-size: 26px;
+    color: #333;
+}
+
+.c-act {
+    color: #b4282d;
+}
+
+.j-uline {
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    width: 82px;
+    height: 4px;
+    background-color: #b4282d;
+}
+
+.more {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 52px;
+    width: 100px;
+    background-color: #fafafa;
+    padding-top: 10px;
+    opacity: 0.96;
+    box-shadow: -6px -4px 4px #fafafa;
+}
+
+.moreicon {
+    width: 32px;
+    margin-left: 34px;
+}
+
+.panel {
+    height: 0px;
+    width: 750px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafafa;
+}
+
+.allChannel {
+    color: #666;
+    font-size: 27px;
+    font-weight: 300;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+.box-line {
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.box {
+    width: 150px;
+    height: 56px;
+    border-color: #bbb;
+    border-width: 2;
+    border-radius: 6;
+    margin-left: 30px;
+}
+
+.box-act {
+    border-color: #b4282d;
+}
+
+.box-text {
+    padding-top: 13px;
+    text-align: center;
+    font-weight: 300;
+    font-size: 27px;
+}

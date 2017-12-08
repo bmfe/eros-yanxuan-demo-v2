@@ -1,0 +1,170 @@
+.iconfont {
+    font-family: iconfont;
+}
+
+.wrapper {
+    background-color: #f4f4f4;
+}
+
+.cell-button {
+    margin-bottom: 18px;
+}
+
+.header {
+    height: 280px;
+}
+
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 280px;
+}
+
+.i-photo {
+    position: absolute;
+    top: 90px;
+    left: 30px;
+    height: 130px;
+    width: 130px;
+    border-radius: 130px;
+}
+
+.i-name {
+    position: absolute;
+    top: 110px;
+    left: 190px;
+    height: 50px;
+    width: 300px;
+    font-size: 38px;
+    color: #fff;
+}
+
+.b-tlt {
+    position: absolute;
+    top: 170px;
+    left: 190px;
+    height: 40px;
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.i-tag {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    padding-top: 2px;
+    margin-right: 6px;
+    border-radius: 4px;
+}
+
+.tag-e {
+    width: 32px;
+    height: 32px;
+}
+
+.tag-v8 {
+    color: #fff;
+    background-color: #b29e75;
+    text-align: center;
+}
+
+.txt-tag {
+    color: #b4a078;
+    flex: 1;
+    height: 40px;
+    font-size: 28px;
+    overflow: hidden;
+    lines: 1;
+    text-overflow: ellipsis;
+}
+
+.b-qrcode {
+    position: absolute;
+    top: 120px;
+    right: 40px;
+    height: 80px;
+    width: 80px;
+    border-radius: 70px;
+    text-align: center;
+    font-size: 40px;
+    padding-top: 18px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, .3);
+}
+
+.s-box {
+    padding-left: 26px;
+    background-color: #fff;
+}
+
+.box-tlt {
+    height: 94px;
+}
+
+.box-txt {
+    font-size: 26px;
+    padding-top: 34px;
+    color: #333;
+}
+
+.i-box-in {
+    position: absolute;
+    top: 34px;
+    right: 30px;
+    color: #333;
+}
+
+.box-line {
+    height: 132px;
+    display: flex;
+    padding-right: 30px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.i-box-l {
+    width: 130px;
+    height: 132px;
+}
+
+.i-box-icon {
+    font-size: 50px;
+    text-align: center;
+    padding-top: 15px;
+    height: 79px;
+    padding-bottom: 10px;
+    color: #666;
+}
+
+.i-box-tlt {
+    font-size: 26px;
+    text-align: center;
+    color: #666;
+}
+
+.line-serve {
+    padding-top: 20px;
+    height: 150px;
+}
+
+.border-bottom {
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, .15);
+}
+
+.i-c-orange {
+    color: #ff744d;
+}
+
+.i-c-yellow {
+    color: #f6a121;
+}
+
+.i-c-blue {
+    color: #689de5;
+}

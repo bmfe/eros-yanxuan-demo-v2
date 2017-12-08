@@ -1,0 +1,49 @@
+export const SERVICES = [{
+    name: '拼团订单',
+    icon: '&#xe658;',
+    color: 'orange'
+}, {
+    name: '邀请好友',
+    icon: '&#xe61d;',
+    color: 'yellow'
+}, {
+    name: '优惠券',
+    icon: '&#xef12;',
+    color: 'yellow'
+}, {
+    name: '优先购',
+    icon: '&#xe615;',
+    color: 'orange'
+}, {
+    name: '礼品卡',
+    icon: '&#xe67d;',
+    color: 'orange'
+}, {
+    name: '会员',
+    icon: '&#xe777;',
+    color: 'yellow'
+}, {
+    name: '足迹',
+    icon: '&#xe69d;',
+    color: 'orange'
+}, {
+    name: '收藏',
+    icon: '&#xe64c;',
+    color: 'yellow'
+}, {
+    name: '地址',
+    icon: '&#xe66a;',
+    color: 'blue'
+}, {
+    name: '客服',
+    icon: '&#xe60a;',
+    color: 'blue'
+}, {
+    name: '帮助',
+    icon: '&#xe691;',
+    color: 'blue'
+}, {
+    name: '设置',
+    icon: '&#xe68a;',
+    color: 'blue'
+}]
