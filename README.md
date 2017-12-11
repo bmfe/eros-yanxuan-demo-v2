@@ -1,6 +1,10 @@
 ## 前言
 本项目是根据[yanxuan-weex-demo](https://github.com/zwwill/yanxuan-weex-demo)，在其基础上使用[weex-eros](https://gitee.com/karynsong/weex-eros-doc/wikis/pages?title=Home)编写完成，在此感谢yanxuan项目作者zwwill的支持。
 
+demo效果：
+
+![demo](http://upload.ouliu.net/i/20171211151704l1dlb.gif)
+
 ## 安装cli
 首先需要安装脚手架[eros-cli](https://github.com/bmfe/eros-cli)
 
