@@ -1,37 +1,35 @@
 ## 前言
-本项目是根据[yanxuan-weex-demo](https://github.com/zwwill/yanxuan-weex-demo)，在其基础上使用[weex-eros](https://gitee.com/karynsong/weex-eros-doc/wikis/pages?title=Home)编写完成，在此感谢yanxuan项目作者zwwill的支持。
+本项目是根据[yanxuan-weex-demo](https://github.com/zwwill/yanxuan-weex-demo)，在其基础上使用[eros](https://github.com/bmfe/eros-template/wiki/eros)编写完成，在此感谢yanxuan项目作者zwwill的支持。
+
 
 demo效果：
 
 ![demo](http://upload.ouliu.net/i/20171211151704l1dlb.gif)
 
-## 安装cli
-首先需要安装脚手架[eros-cli](https://github.com/bmfe/eros-cli)
+## 环境
+根据 [eros](https://github.com/bmfe/eros-template/wiki/eros) 文档配置好所需的所有环境。[文档地址](https://github.com/bmfe/eros-template/wiki/eros)
 
-    $ cnpm install -g eros-cli
+## 运行
 
-初始化模板
+    $ eros install
 
-    $ eros init
-    
-向app打内置包(以ios为例)
+eros install 安装完项目后 ios 端的 xcode 会自动打开，安卓导入 platforms/android/WeexFrameworkWrapper 项目后运行。
 
-    $ eros pack --ios
+一开始默认的 demo 走的是本地内置包的项目，如何开发呢？
 
-启动服务
+## 开发
 
     $ eros dev
-    
-以ios为例，通过xcode安装app到手机上，在app中通过【调试-设置项】，关闭interceptor,否则看到的是内置包中的内容。
 
-那怎么才能看到刚才我们在电脑上写的效果呢？通过charles等软件将请求代理到我们的电脑上，这样在app中看到的才是我们电脑上的项目。
+### 模拟器开发
 
-只配代理还不行，要在本地配hosts,在 127.0.0.1 中增加 app.weex-eros.com
 
-好啦，双击app上的调试，刷新页面，看看效果吧~
+运行了 eros dev 之后，在app中通过【调试-设置项】，关闭interceptor,，ios刷新页面， android 重进app 既可以开始开发了，您可以随意更改内容，然后双击刷新按钮快速刷新。
+
+### 真机调试
+需要借助 clarles 或 fidder 等代理软件来帮助我们进行真机调试。[具体文档](https://github.com/bmfe/eros-template/wiki/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95#%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95)
 
 ## 项目结构
-服务启动后，我们就可以开始在模板中编写我们的代码了。
 
 在`src/js/pages`文件夹下新建我们的yanxuanDemo文件夹，所有关于此项目的代码，都将放在这里。
 
@@ -167,4 +165,3 @@ tabs大家可以自己定义样式，但是在每一个tab上，都需要设置c
 目前主要实现的是首页部分，其他模块只是实现了简单交互，后续会慢慢丰富。
 
 
-希望大家可以积极交流，帮助我们完善weex-eros和demo!
