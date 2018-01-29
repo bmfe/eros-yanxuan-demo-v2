@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div class="status-bar"></div>
+        <!-- <div class="status-bar"></div> -->
         <home-header></home-header>
         <scroller class="main-list" offset-accuracy="300px">
             <refresher @loadingDown="loadingDown"></refresher>

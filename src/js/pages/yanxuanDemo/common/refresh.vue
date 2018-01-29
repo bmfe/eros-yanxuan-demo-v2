@@ -20,6 +20,7 @@ export default {
     data() {
         return {
             refreshing: false,
+            stopAnimation: false,
             loadingAR: [
                 { ref: 'lTxt1', p: [-77, -75], delay: 0 },
                 { ref: 'lTxt2', p: [-47, -81], delay: 50 },
@@ -40,13 +41,20 @@ export default {
         },
         loadingAniDown() {
             for (var i = 0; i < this.loadingAR.length; i++) {
-                this.shake(this.$refs[this.loadingAR[i].ref], 0, 0, 0, 0, 200);
-            }
-            this.$emit('loadingDown', {
-                status: 'loadingDown'
-            })
+                this.shake(this.$refs[this.loadingAR[i].ref], 0, 0, 0, 0, 500, 0, i == this.loadingAR.length - 1);
+            }                        
         },
-        shake(_ref, _x, _y, _k, _d, _duration, _delay) {
+        endRefresh(time) {
+            setTimeout(() => {
+                this.$emit('loadingDown', {
+                    status: 'loadingDown'
+                })       
+                setTimeout(() => {
+                    this.refreshing = false
+                },100)            
+            }, time) 
+        },
+        shake(_ref, _x, _y, _k, _d, _duration, _delay, endShake) {
             animation.transition(_ref, {
                 styles: {
                     transform: 'translate(' + (_x - 0) + 'px,' + (_y - _k * _d) + 'px)',
@@ -55,16 +63,21 @@ export default {
                 timingFunction: 'ease-out',
                 delay: _delay | 0 //ms
             }, function() {
-                this.refreshing && this.shake(_ref, _x, _y, _k, -1 * _d);
+                !this.stopAnimation && this.shake(_ref, _x, _y, _k, -1 * _d);
+                if (endShake) {
+                    this.endRefresh(_duration + 100)
+                }
+
             }.bind(this))
         },
         onrefresh(event) {
+            this.stopAnimation= false
             this.loadingAni();
             this.refreshing = true;
             setTimeout(() => {
-                // this.refreshing = false;
+                this.stopAnimation = true
                 this.loadingAniDown();
-            }, 1300)
+            }, 2000)
         },
         onpullingdown(event) {}
     }

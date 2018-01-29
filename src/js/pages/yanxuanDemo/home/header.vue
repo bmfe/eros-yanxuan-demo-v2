@@ -33,7 +33,7 @@ export default {
 .wrapper {
     position: fixed;
     top: 0;
-    margin-top: 40;
+    /*margin-top: 40;*/
     left: 0;
     right: 0;
     height: 114px;
