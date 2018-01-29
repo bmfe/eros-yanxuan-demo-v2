@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+        <!-- <div class="status-bar"></div> -->
         <home-header></home-header>
         <scroller class="main-list" offset-accuracy="300px">
             <refresher @loadingDown="loadingDown"></refresher>
@@ -33,7 +34,7 @@
     </div>
 </template>
 <script>
-if(process.env.NODE_ENV === 'development') require('Config')
+if (process.env.NODE_ENV === 'development') require('Config')
 import header from './header';
 import refresher from '../common/refresh';
 import topChannel from './topChannel';
@@ -187,5 +188,6 @@ export default {
         },
     }
 }
+
 </script>
 <style lang="sass" src="./index.scss"></style>

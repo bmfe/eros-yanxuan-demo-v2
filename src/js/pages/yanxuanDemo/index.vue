@@ -1,19 +1,32 @@
 <template>
     <div class="app-wrapper">
+        
         <embed v-for="(item,index) in items" :src="item.src" type="weex" class="content" :style="{ visibility: item.visibility }"></embed>
         <tab-bar @tabTo="onTabTo" :items="items"></tab-bar>
+        <div class="touch-bar"></div>
     </div>
 </template>
 <script>
-if(process.env.NODE_ENV === 'development') require('Config')
+if (process.env.NODE_ENV === 'development') require('Config')
 import util from './utils/util';
 import tabBar from './common/tabBar';
 import { tabConfig } from './config'
 export default {
+    bmRouter: {
+        viewWillAppear() {
+            debugger
+            console.log('home-index-viewWillAppear');
+        },
+        viewWillBackAppear(params) {
+            debugger
+            console.log('home-index-viewWillBackAppear');
+        }
+    },
     components: {
         'tab-bar': tabBar,
     },
     created() {
+        debugger
         util.initIconFont()
     },
     data() {
@@ -34,6 +47,7 @@ export default {
         },
     }
 }
+
 </script>
 <style>
 body {
@@ -42,8 +56,10 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
+
 </style>
-<style scoped>
+<style lang="sass" scoped>
+@import 'src/js/css/core/base.scss';
 .iconfont {
     font-family: iconfont;
 }
@@ -105,4 +121,5 @@ body {
     text-align: center;
     color: #b4282d;
 }
+
 </style>

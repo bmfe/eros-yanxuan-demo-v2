@@ -1,167 +1,165 @@
-## 前言
-本项目是根据[yanxuan-weex-demo](https://github.com/zwwill/yanxuan-weex-demo)，在其基础上使用[eros](https://github.com/bmfe/eros-template/wiki/eros)编写完成，在此感谢yanxuan项目作者zwwill的支持。
+## Intro
+eros 是基于 [weex](https://weex-project.io/cn/) 封装面向前端的 vue 写法的解决方案，由于 app 开发的特殊性，eros 则更偏重关心于整个 app 项目。
+## Advantage
+* 详细的文档来解决环境搭建过程中的坑。
+* 一套代码编译成 ios，android 两端原生应用。
+* 封装了大量 weex module，让前端开发方便进行原生的操作。
+* 可以通过 `appboard` 机制来减少多页面项目中的代码冗余，减少包体积，并可以对其实时修改。
+* 内置了一套完整的 JS 二次封装 module (widget) ，直接通过 vue 插件系统注入，直接在 `this` 上调用，可根据业务自行修改。
+* 内置了中介者服务，来进行多个页面间的交互，并可以管理业务。
+* 内置了服务器端增量发布更新逻辑，可以搭配着开源的简易增量发布系统一起使用。
+* 支持真机和模拟器通过 `weex debug` 来断点调试，程序报错均会有报错日志弹窗提示。
+* 可以通过脚手架：
+    * 直接生成开发最新模板。
+    * 启动服务进行实时开发效果查看和 debug 调试。
+    * 更新开发平台所需 eros 依赖。
+    * 直接 `pack` 对应平台内置 `JS Bundle`。
+    * 支持生成全量包，增量包，并内置与更新服务器交互逻辑。
+    * 支持同步更新模板内容。
+    * 支持 weex 的 vue 入口和 js 入口两种开发方式。
+* 支持市面上流行的组件库：
+    * [weex-ui](https://github.com/alibaba/weex-ui) ( 阿里出品，推荐使用 )
+    * [bui](https://github.com/bingo-oss/bui-weex)
 
+## Disadvantage
+> eros 开发中也有很多限制，需要开发者自行斟酌。
+* weex 代码在浏览器端还有很多兼容性问题，所有 eros 目前不支持浏览器端
+* eros 暂时不能自动使用 weex 市场，但如果您有原生开发经验可以自行接入。
+* 由于 eros 对 **JS Bundle** 运行机制采用了 appboard 机制来减少了 js bundle 的大小，导致 weex debug 需要特定的处理。
+* eros 打出来的包体积稍大，为解决这个问题，eros 客户端依赖可配置正在开发中。
+* 如果遇到复杂的页面，如 IM 之类的，eros 建议用原生实现，weex 应付此类需求还是比较吃力。
 
-demo效果：
+## Principle
 
-![demo](http://upload.ouliu.net/i/20171211151704l1dlb.gif)
+![工作原理](http://on-img.com/chart_image/59c5d743e4b0d34a18d69580.png)
+[大图地址](http://on-img.com/chart_image/59c5d743e4b0d34a18d69580.png)
 
-## 环境
-根据 [eros](https://github.com/bmfe/eros-template/wiki/eros) 文档配置好所需的所有环境。[文档地址](https://github.com/bmfe/eros-template/wiki/eros)
+## Situation
+目前 `eros` 已有数十个 app 在开发中和上线的状态，其中有正在开发中的国外应用 **starLife（100+页面）**，也有国内正在开发的**蜂觅（60+ 页面）**，还有**已上线的应用都在 0-50+ 页面不等**，涉及行业分布于资讯，医疗，招商，购物，政府，办公等等。
 
-## 运行
+而本木医疗（京医通）技术团队本身也基于 weex 开发了三个已上线的 app，均可在苹果商店和应用宝下载：
+* 健康首都（京医通 app版，100+页面，很多功能还未开放）
+* 本木医疗助手（30+页面）
+* 本木医生助理（20+页面）
 
-    $ eros install
+所以开发者大可放心，这不是一个 KPI 项目（公司没有 KPI ），已基于 MIT 协议开源。
+## Docs
+* [eros 文档地址](https://github.com/bmfe/eros-template/wiki/eros) (持续更新中...)
+## Required
+开发之前您需要学习 weex 知识，并且能熟练使用 vue 开发，文档地址如下。
+* [weex](http://weex.apache.org/cn/guide/)
+* [vue](https://cn.vuejs.org/v2/guide/)
 
-eros install 安装完项目后 ios 端的 xcode 会自动打开，安卓导入 platforms/android/WeexFrameworkWrapper 项目后运行。
+## Support 
+> 跟随着 weex 的支持性，`但目前我们并不支持开发代码兼容 web 端`
 
-一开始默认的 demo 走的是本地内置包的项目，如何开发呢？
+* Android 4.1 (API 16)
+* iOS 8.0+ 
+* WebKit 534.30+ 
 
-## 开发
+## Environment
+以下为不同 OS 开发不同客户端所需环境。
 
-    $ eros dev
+#### hosts
+为了真机调试，我们推荐配置 `hosts` 文件，添加如下地址，当然您也可以默认为公司固定资源文件访问地址，这样通过证书还能进行线上抓包分析问题。
+```
+127.0.0.1   app.weex-eros.com
+```
+#### 脚手架所需环境:
+darwin: 
+* Node.js (>=6.x), npm version 4+ 
 
-### 模拟器开发
+windows: 
+* Git bash 
 
+> 因为脚手架依赖了`node-sass`，安装失败有很多解决办法，可自行查找。
 
-运行了 eros dev 之后，在app中通过【调试-设置项】，关闭interceptor,，ios刷新页面， android 重进app 既可以开始开发了，您可以随意更改内容，然后双击刷新按钮快速刷新。
+#### 脚手架安装:
+```
+$ npm i eros-cli -g
+```
+如果你在中国地区，我们还是推荐您使用 [cnpm](https://npm.taobao.org/) 安装或者直接修改为`淘宝源`。
+```
+$ cnpm i eros-cli -g 
+```
+#### darwin 开发 iOS:
+* Xcode
+* CocoaPods
+    * 升级 Ruby 环境：`$ sudo gem update --system`
+    * 移除现有 Ruby 镜像：`$ gem sources --remove https://rubygems.org/`
+    * 添加ruby-china镜像：`$ gem source -a https://gems.ruby-china.org/`
+    * 安装 CocoaPods：`$ sudo gem install cocoapods`
+    * 如果以上命令报错则执行：`$ sudo gem install -n /usr/local/bin cocoapods --pre`
+    * 最后执行：`$ pod setup 过程比较漫长，请耐心等待执行完成`
 
-### 真机调试
-需要借助 clarles 或 fidder 等代理软件来帮助我们进行真机调试。[具体文档](https://github.com/bmfe/eros-template/wiki/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95#%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95)
+#### darwin/windows/linux 开发 Android:
+* 下载并安装 [JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
+* 下载并安装 [Android Studio](https://developer.android.google.cn/studio/index.html)。
 
-## 项目结构
+JDK 是 JAVA 开发包，AndroidStudio 是 Android开发IDE，这两项不再做过多介绍。
 
-在`src/js/pages`文件夹下新建我们的yanxuanDemo文件夹，所有关于此项目的代码，都将放在这里。
+> 如果您使用虚拟机进行跨平台开发，也需要配置好对应平台的所需环境。
 
-结构如下：
+### 模拟器安装
+* ios 开发中 xcode 已经自带了模拟器
+* android 开发者推荐下载 `Genymotion`模拟器
 
-    |-- yanxuanDemo         
-      |-- common         （公共组件）
-      |-- class          （模块-分类）
-      |-- home           （模块-首页）
-      |-- my             （模块-个人）
-        |-- config.js  
-        |-- index.scss 
-        |-- index.vue  
-      |-- shop           （模块-购物车）
-      |-- topic          （模块-专题）
-      |-- utils          （工具库）
-      |-- config.js      （公共配置文件）
-      |-- index.vue    
+>当然市面上的如 `夜神模拟器` 也是可以的，[调试教程](http://blog.csdn.net/qq_34653571/article/details/53007044?locationNum=14&fps=1)，但是在 weex 0.17 中会出现 weex 实例化失败的问题，所以还是推荐 `Genymotion`。
 
-每个模块文件夹下都有类似my文件夹下的`config.js、index.scss、index.vue`等文件。`config.js`主要写配置信息以及接口的调用方法（当然，如果项目比较复杂庞大，你也可以将配置信息和接口分开来写）。
+## Start
+1. 首先通过脚手架自动生成开发模板(我们不推荐用 `sudo` 来执行脚手架的任何指令)
+```
+$ eros init
+```
+按提示选择模板，填写 app/项目名称和版本后在当前路径下会生成对应模板，然后 `cd` 到项目中
 
-## 配置信息
-编写好我们的项目后，需要在整个项目的config文件夹下找到`eros.dev.js`和`eros.native.js`。
+2. 下载所需依赖
+前端依赖
+```
+$ npm install
+```
+客户端依赖
+```
+$ eros install
+```
+3. 安装完依赖之后:
+* iOS: 会自动打开 `Xcode` ，然后选择一个模拟器，点击左上角的播放(运行)按钮，即可看到内置包中已经内置好的 eros demo.
 
-每个模块的入口文件，也就是打包的地址，都需要在`eros.dev.js`中配置：
+* Android:开发者需要多几个步骤:
+1. 点击AndroidStudio上方的 **File---&gt;New---&gt;Import Project。**
+![](https://img.benmu-health.com/gitbook/1505963461481.jpg)
+2. 找到eros在你本地的地址，选择 **platforms/android/WeexFrameworkWrapper** ,点击**OK。**
+![](https://img.benmu-health.com/gitbook/1505963624252.jpg)
+3. 待项目构建完成，点击 AndroidStudio 上方工具栏的 **Run** ，即可运行项目。![](https://img.benmu-health.com/gitbook/1505963683163.jpg)
 
-    "exports": [
-        // appBoard 
-        "js/config/index.js",
-        // mediator
-        "js/mediator/index.vue",
-        // home
-        "js/pages/yanxuanDemo/index.vue",
-        "js/pages/yanxuanDemo/home/index.vue",
-        "js/pages/yanxuanDemo/topic/index.vue",
-        "js/pages/yanxuanDemo/class/index.vue",
-        "js/pages/yanxuanDemo/shop/index.vue",
-        "js/pages/yanxuanDemo/my/index.vue"
-    ]
-    
-在`eros.native.js`中配置项目的落地页地址：
+注意：
+> 第一次打开 AndroidStuido 时，由于本地环境未配置好，AndroidStuido 会提示错误，按照 IDE 提示，大部分环境问题都可以解决。
 
-    "page": {
-            "homePage": "/pages/yanxuanDemo/index.js"
-    }
+于是 eros 的 demo 便能在模拟器中跑起来了。
 
-重新打包（`eros pack`）并启动一下服务（`eros dev`），看看是不是可以看到我们的demo了。
+![eros-demo](http://upload.ouliu.net/i/20171212233540q8alw.gif)
 
-**这里有一个地方需要注意，如果修改了`eros.dev.js`，都需要重新启动服务（`eros dev`）；如果修改了`eros.native.js`，则需要重新打包到app(`eros pack`)，详细描述可以查看[weex-eros使用手册](https://github.com/bmfe/eros-template/wiki/eros)**
+在 eros demo 中我们可以看到：
+* tab1 中内置了 weex-ui 的 demo
+* tab2 中有大部分 widget 使用的实例
+* tab3 中跑了官方的瀑布流例子和我们编写一个支持手势滑动的多个 List 的类似新闻的实例。
 
-## 实现tab效果
-目前weex官方没有提供tab组件，我们暂时找到了一种替代方案，可以满足部分tab交互的需求。
+> eros 的 demo 很重要，建议在开发中，首先跟随 demo 编写几个页面，并保留其代码作为使用参考。
+## Quick Query 
+* [Hello World](https://github.com/bmfe/eros-template/wiki/eros-%7C-%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97)
+* [更新总览](https://github.com/bmfe/eros-template/wiki/update-all)
+## Ecosystem
+| Project | Description |
+|---------|-------------|
+| [eros-cli](https://github.com/bmfe/eros-cli) | 简单的 eros 项目构建工具，可以提供搭建，开发，调试和发布等功能。 |
+| [eros-publish](https://github.com/bmfe/eros-publish) | 简单的服务器差分包更新逻辑，需要和脚手架搭配使用。 |
+| [eros-ios-library](https://github.com/bmfe/Benmu-iOS-Library) | eros ios Weex 项目依赖库。 |
+| [eros-ios-sdk](https://github.com/bmfe/WeexiOSSDK) | eros ios Weex sdk。 |
+| [eros-android-framework](https://github.com/bmfe/WeexErosFramework) | eros weex 移动解决方案安卓端框架。 |
+| [eros-android-widget](https://github.com/bmfe/BMWidget) | eros 安卓组件库。 |
+| [eros-android-sdk](https://github.com/bmfe/WeexSDK) | eros 安卓移动解决方案安卓端 WeexSDK。 |
 
-这里说一下大体思路。模块分为两部分，tabs和存放tab对应内容的panel。
+### 此处应有打赏，请简单粗暴地爱我们！
+![](https://github.com/bmfe/eros-template/wiki/image/shang.jpeg)
 
-panel实际上是一个scroller，在scroller上设置属性`paging-enabled="true"`，这是我们weex-eros的属性，用来监听滑动事件。
-
-在scroller中有一个个的div，在div上设置`ref="page_xxx"`,xxx为0，1，2，3,分别对应每一个tab。
-
-在scroller上设置scroll事件，scroll事件中可以获取到滑动的偏移量（[contentOffset.x](https://weex.apache.org/cn/references/components/scroller.html#事件)）。
-
-由于weex默认屏幕的宽度是750，当发现滑动的偏移量为750的整倍数时，我们就认为切换tab了。具体对应第几个tab，就看是750的多少倍。
-
-这时将tabs中对应的选中样式修改，完成滑动内容修改tab的交互。
-
-tabs大家可以自己定义样式，但是在每一个tab上，都需要设置click事件，用来告诉我们是点击的哪一个tab。
-
-点击tab切换panel中对应内容时，可以用    
-
-    dom.scrollToElement(this.$refs[`page_${index}`][0], { animated: false })
-    
-这样点击tab，panel中的内容就修改了。
-
-这里有一个问题需要注意，必须设置`animated: false`。如果不设置的话，`dom.scrollToElement`默认会有动画效果，会触发scroller上的scroll事件,而scroll中也会影响tab,造成交互错乱。
-
-具体的实现可以参考`src/pages/yanxuanDemo/class/index.vue`，或者封装的组件`src/js/components/topTab`，组件调用在`src/js/pages/news`中，仅供参考。
-
-这个解决方案目前有一个问题，就是你必须知道切换一屏的距离，例如本例中左右切换是750。在不知道一屏的距离时，**便没法计算对应哪一个tab**，这是这个方案目前的缺点。
-
-尤其是实现上下切换时，由于滑动的高度不一定是固定值，很多时候会根据屏幕大小变化，所以还需要大家自己手动计算高度。
-
-## 使用mock调试
-为了方便初次使用的同学能尽快看到效果，所以对动态数据进行了本地写死操作。
-
-但是真实的场景是，这些数据都是从后端拿到的。所以我们需要本地mock数据，在接口还不能使用的情况下，不影响我们前端的进度。
-
-在`mock/test`文件夹下，创建yanxuan文件夹，所有关于此项目的mock数据，都写在这里。
-
-为了便于区分，我们可以根据模块再详细分组。例如，将home模块的所有数据，放在home文件夹下。
-
-新增`getYXBanners.js`，数据如下:
-
-    module.exports = [{
-        "delay": 500,
-        "response": {
-            "resCode": 0,
-            "msg": null,
-            "data": [
-                { title: '', src: 'http://yanxuan.nosdn.127.net/630439320dae9f1ce3afef3c39721383.jpg' },
-                { title: '', src: 'http://yanxuan.nosdn.127.net/5100f0176e27a167cc2aea08b1bd11d8.jpg' },
-                { title: '', src: 'http://doc.zwwill.com/yanxuan/imgs/banner-1.jpg' },
-                { title: '', src: 'http://doc.zwwill.com/yanxuan/imgs/banner-2.jpg' },
-                { title: '', src: 'http://doc.zwwill.com/yanxuan/imgs/banner-4.jpg' },
-                { title: '', src: 'http://doc.zwwill.com/yanxuan/imgs/banner-5.jpg' },
-                { title: '', src: 'http://doc.zwwill.com/yanxuan/imgs/banner-6.jpg' }
-            ]
-        }
-    }]
-
-在`src/js/config/apis.js`中，增加内容：
-
-    // 配置请求的别名
-    export const apis = {
-        // home
-        'yanxuan_home_getYXBanners': '/test/yanxuan/home/getYXBanners',
-    }
-
-在我们需要获取数据的地方，增加获取数据的方法：
-
-    this.$fetch({
-        method: 'GET',
-        name: 'yanxuan_home_getYXBanners',
-        data: {}
-    }).then(resData => {
-        this.YXBanners = resData.data
-    }, error => {
-    
-    })
-
-这样，便可以通过别名调用我们的mock地址，当后端接口通了时，在apis.js中将mock地址替换为线上地址即可。
-
-
-目前主要实现的是首页部分，其他模块只是实现了简单交互，后续会慢慢丰富。
-
-
+帮我买杯咖啡，继续创作，谢谢大家！
