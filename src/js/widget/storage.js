@@ -1,104 +1,56 @@
-var storage = weex.requireModule('bmStorage'),
-    modal = weex.requireModule('bmModal')
-
-import isEmpty from 'lodash/isEmpty'
-import isFunction from 'lodash/isFunction'
+import _isFunction from 'lodash/isFunction'
+const storage = weex.requireModule('bmStorage')
 
 var Storage = Object.create(null)
 
 Storage.install = (Vue, options) => {
     Vue.prototype.$storage = {
-        set(key, value, callback) {
-            value = JSON.stringify({
-                data: value
-            })
+        set (key, value, callback) {
             return new Promise((resolve, reject) => {
-                storage.setData(key, value, (resData) => {
-                    if (isFunction(callback)) {
-                        callback.call(this, resData)
-                    }
-                    if (resData && resData.resCode == 0) {
-                        resolve(true)
-                    } else {
-                        reject(false)
-                    }
+                storage.setData(key.toString(), JSON.stringify(value), ({ status, data, errorMsg }) => {
+                    _isFunction(callback) && callback.call(this, status === 0)
+                    status === 0 ? resolve(true) : reject(false)
                 })
             })
         },
-        setSync(key, value) {
-            value = JSON.stringify({
-                data: value
-            })            
-            let resData = storage.setDataSync(key, value)
-            return resData && resData.resCode == 0
+        setSync (key, value) {
+            return storage.setDataSync(key.toString(), JSON.stringify(value))
         },
-        get(key, callback) {
+        get (key, callback) {
             return new Promise((resolve, reject) => {
-                storage.getData(key, (resData) => {
-                    resData.data = JSON.parse(resData.data.value || '{}')
-                    resData.data = resData.data.data
-                    if (isFunction(callback)) {
-                        callback.call(this, resData)
-                    }
-                    if (resData && resData.resCode == 0) {
-                        resolve(resData.data)
-                    } else if (resData && resData.resCode == 9) {
-                        // 如果发现值不存在则返回空字符串
-                        resolve(false)
-                    } else {
-                        reject(resData)
-                    }
+                storage.getData(key.toString(), ({ status, data, errorMsg }) => {
+                    _isFunction(callback) && callback.call(this, status === 0)
+                    status === 0 ? resolve(JSON.parse(data)) : reject(false)
                 })
             })
         },
-        getSync(key) {
-            let resData = storage.getDataSync(key),
-                _code = resData && resData.resCode
-
-            if (_code == 0) {
-                resData.data = JSON.parse(resData.data.value || '{}')
-                resData.data = resData.data.data                
-                return resData.data
-            }
-            if (_code == 9) {
-                return false
-            }
+        getSync (key) {
+            const { status, data, errorMsg } = storage.getDataSync(key.toString())
+            return status === 0 ? JSON.parse(data) : { status, data, errorMsg }
         },
-        delete(key, callback) {
+        delete (key, callback) {
             return new Promise((resolve, reject) => {
-                storage.deleteData(key, (resData) => {
-                    if (isFunction(callback)) {
-                        callback.call(this, resData)
-                    }
-                    if (resData && resData.resCode == 0) {
-                        resolve(true)
-                    } else {
-                        reject(false)
-                    }
+                storage.deleteData(key.toString(), ({ status, data, errorMsg }) => {
+                    _isFunction(callback) && callback.call(this, status === 0)
+                    status === 0 ? resolve(true) : reject(false)
                 })
             })
         },
-        deleteSync(key) {
-            let resData = storage.deleteDataSync(key)
-            return resData && resData.resCode == 0
+        deleteSync (key) {
+            const { status, data, errorMsg } = storage.deleteDataSync(key.toString())
+            return status === 0 ? true : { status, data, errorMsg }
         },
-        removeAll(callback) {
+        removeAll (callback) {
             return new Promise((resolve, reject) => {
-                storage.removeData((resData) => {
-                    if (isFunction(callback)) {
-                        callback.call(this, resData)
-                    }
-                    if (resData && resData.resCode == 0) {
-                        resolve(true)
-                    } else {
-                        reject(false)
-                    }
+                storage.removeData(({ status, data, errorMsg }) => {
+                    _isFunction(callback) && callback.call(this, status === 0)
+                    status === 0 ? resolve(true) : reject(false)
                 })
             })
         },
-        removeAllSync() {
-            let resData = storage.removeDataSync()
-            return resData && resData.resCode == 0
+        removeAllSync () {
+            const { status, data, errorMsg } = storage.removeDataSync()
+            return status === 0 ? true : { status, data, errorMsg }
         }
     }
 }

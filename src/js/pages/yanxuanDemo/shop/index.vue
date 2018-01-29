@@ -26,12 +26,24 @@ import refresher from '../common/refresh';
 import { GOODS } from './config'
 
 export default {
+    bmRouter: {
+        viewWillAppear() {
+            debugger
+            console.log('shop-viewWillAppear');
+        },
+        viewWillBackAppear(params) {
+            debugger
+            console.log('shop-viewWillBackAppear');
+        }
+    },
     components: {
         'shop-header': header,
         'refresher': refresher,
         'block': block,
     },
     created() {
+        debugger
+        console.log('shop-created');
         this.getGoods()
     },
     data() {
@@ -56,7 +68,13 @@ export default {
             // })
 
             this.goods = GOODS
+        },
+        jump2() {
+            this.$router.open({
+                name: 'a'
+            })
         }
+
     }
 }
 </script>
