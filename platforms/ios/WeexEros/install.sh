@@ -7,13 +7,12 @@ sudo rm -rf Benmu-iOS-Library/
 
 git clone https://github.com/bmfe/WeexiOSSDK.git
 #cd WeexiOSSDK
-#git checkout 0.17.0
+#git checkout 0.18.0
 #cd ../
 
 git clone https://github.com/bmfe/Benmu-iOS-Library.git
 #cd Benmu-iOS-Library
-#git checkout 1.1.2
-#cd ../
+#git checkout 1.1.8
 
 pod update
 
