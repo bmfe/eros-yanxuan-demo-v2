@@ -22,7 +22,6 @@
     </div>
 </template>
 <script>
-if(process.env.NODE_ENV === 'development') require('Config')
 import refresher from '../common/refresh';
 import header from './header';
 import { CLASSES, SUBCLASSES } from './config'

@@ -65,7 +65,6 @@
     </div>
 </template>
 <script>
-if(process.env.NODE_ENV === 'development') require('Config')
 import he from '../utils/he';
 import { SERVICES } from './config'
 

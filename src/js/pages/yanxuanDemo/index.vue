@@ -6,18 +6,16 @@
     </div>
 </template>
 <script>
-if (process.env.NODE_ENV === 'development') require('Config')
+
 import util from './utils/util';
 import tabBar from './common/tabBar';
 import { tabConfig } from './config'
 export default {
     bmRouter: {
         viewWillAppear() {
-            debugger
             console.log('home-index-viewWillAppear');
         },
         viewWillBackAppear(params) {
-            debugger
             console.log('home-index-viewWillBackAppear');
         }
     },

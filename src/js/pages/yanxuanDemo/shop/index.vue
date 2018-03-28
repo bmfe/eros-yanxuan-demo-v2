@@ -19,7 +19,6 @@
     </div>
 </template>
 <script>
-if(process.env.NODE_ENV === 'development') require('Config')
 import header from './header';
 import block from './block';
 import refresher from '../common/refresh';
