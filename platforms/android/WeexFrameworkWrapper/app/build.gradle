@@ -5,8 +5,8 @@ android {
     buildToolsVersion '26.0.2'
     flavorDimensions 'default'
     defaultConfig {
-        applicationId "com.benmu.wx"
-        minSdkVersion 14
+        applicationId APPLICATION_ID
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -14,10 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters "x86"
-            abiFilters "x86_64"
             abiFilters "armeabi"
-            abiFilters "armeabi-v7a"
-            abiFilters "x86"
         }
     }
 
