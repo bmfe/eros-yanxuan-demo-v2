@@ -19,13 +19,22 @@ $ cd eros-yanxuan
 $ npm i
 ```
 
-下载 eros sdk 依赖：
+### iOS SDK
 ```
-$ eros install
+$ cd platforms/ios/WeexEros
+$ pod update                // 下载 iOS 依赖
+$ open WeexEros.xcworkspace // 自动打开项目
 ```
+选中模拟器，点击绿色箭头运行 app 即可。
 
-- 如果本地安装了 xcode 会自动打开，选中模拟器，点击绿色箭头运行 app 即可。
+### Android 
+
 - Android 需要[自行导入项目](https://bmfe.github.io/eros-docs/#/zh-cn/base_init?id=android-%E5%AF%BC%E5%85%A5%E5%B7%A5%E7%A8%8B)，便可运行起来。
+
+## develop
+- 项目根目录下运行 `eros dev`
+- 关闭调试，拦截器，打开热更新
+- 重新 build app
 
 ## Question?
 运行过程中出现问题在以下地址解决方法，如果没有找到，还请给我们提 issue。
