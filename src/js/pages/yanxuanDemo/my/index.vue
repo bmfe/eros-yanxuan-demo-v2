@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+        <div class="status-bar" :style="{'height': statusHeight}"></div>
         <div class="header" @click="jumpWeb('http://m.you.163.com/ucenter')">
             <image class="header-bg" resize="cover" src="http://yanxuan.nosdn.127.net/6ae93353e95b3450a2710bb43f925a63.jpg"></image>
             <image class="i-photo" resize="cover" src="http://yanxuan.nosdn.127.net/885e3901d0a3501362530435d76bebb3.jpg"></image>
@@ -79,7 +80,8 @@ export default {
     data() {
         return {
             services: [],
-            serviceLength: 0
+            serviceLength: 0,
+            statusHeight: Number.parseInt(this.statusBarHeight || weex.config.env.statusBarHeight || 40)
         }
     },
     methods: {

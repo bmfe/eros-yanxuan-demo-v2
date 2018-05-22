@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+        <div class="status-bar" :style="{'height': statusHeight}"></div>
         <shop-header title="购物车" :rightBtn="rightBtn"></shop-header>
         <div class="slogan" @click="jump2($event,'true')">
             <text class="i-slg iconfont">&#xe63a; 30天无忧退换货</text>
@@ -27,11 +28,9 @@ import { GOODS } from './config'
 export default {
     bmRouter: {
         viewWillAppear() {
-            debugger
             console.log('shop-viewWillAppear');
         },
         viewWillBackAppear(params) {
-            debugger
             console.log('shop-viewWillBackAppear');
         }
     },
@@ -41,8 +40,6 @@ export default {
         'block': block,
     },
     created() {
-        debugger
-        console.log('shop-created');
         this.getGoods()
     },
     data() {
@@ -51,7 +48,8 @@ export default {
                 name: "编辑"
             },
             goods: [],
-            goodList: []
+            goodList: [],
+            statusHeight: Number.parseInt(this.statusBarHeight || weex.config.env.statusBarHeight || 40)
         }
     },
     methods: {

@@ -16,15 +16,9 @@ export default {
 </script>
 <style scoped>
 .wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 114px;
-    padding-top: 44px;
+    height: 70px;
     background-color: #fafafa;
     opacity: .99;
-    z-index: 101;
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-around;

@@ -7,13 +7,13 @@
 }
 
 .main-list {
-    margin-top: 170px;
+    // margin-top: 170px;
     margin-bottom: 90px;
 }
 
 .slogan {
-    position: absolute;
-    top: 110px;
+    // position: absolute;
+    // margin-top: 110px;
     width: 750px;
     display: flex;
     flex-direction: row;
@@ -50,4 +50,10 @@
     width: 750px;
     top: 250px;
     color: #999;
+}
+
+.status-bar {
+    width: 750;
+    height: 40;
+    background-color:#fafafa;
 }

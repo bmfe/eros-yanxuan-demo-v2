@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper" :style="{'top': 70+statusHeight}">
         <scroller class="scroller" scroll-direction="horizontal" flex-direction="row" loadmoreoffset="750px" show-scrollbar=false>
             <div class="j-uline" ref="jcLine"></div>
             <text jact="true" class="i-c" v-for="(item,index) in channelList" :class="[ activeIndex == index ? 'c-act' : '']" @click="chooseChannel(index,item)" :ref="'channel_' + index">{{item.name}}</text>
@@ -65,7 +65,8 @@ export default {
             row: 1,
             pullStatus: false,
             dataReady: false,
-            panelHeight: 0
+            panelHeight: 0,
+            statusHeight: Number.parseInt(this.statusBarHeight || weex.config.env.statusBarHeight || 40),
         }
     },
     methods: {

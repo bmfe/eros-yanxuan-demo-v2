@@ -1,14 +1,18 @@
 <template>
-    <div class="app-wrapper">
-        <embed v-for="(item,index) in items" :src="item.src" type="weex" class="content" :style="{ visibility: item.visibility }"></embed>
-        <tab-bar @tabTo="onTabTo" :items="items"></tab-bar>
-        <div class="touch-bar"></div>
-    </div>
+    <bmContainer :touchBarShow="true" touchBarColor="#fafafa">
+        <div class="flex">
+            <div class="app-wrapper flex">
+                <embed v-for="(item,index) in items" :src="item.src" type="weex" class="content" :style="{ visibility: item.visibility }"></embed>
+                <tab-bar @tabTo="onTabTo" :items="items"></tab-bar>
+                <div class="touch-bar"></div>
+            </div>
+        </div>
+    </bmContainer>
 </template>
 <script>
-
 import util from './utils/util';
 import tabBar from './common/tabBar';
+import bmContainer from '../../components/bmContainer'
 import { tabConfig } from './config'
 export default {
     bmRouter: {
@@ -21,9 +25,9 @@ export default {
     },
     components: {
         'tab-bar': tabBar,
+        bmContainer
     },
     created() {
-        debugger
         util.initIconFont()
     },
     data() {
@@ -44,7 +48,6 @@ export default {
         },
     }
 }
-
 </script>
 <style>
 body {
@@ -53,7 +56,6 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
-
 </style>
 <style lang="sass" scoped>
 @import 'src/js/css/core/base.scss';
@@ -118,5 +120,4 @@ body {
     text-align: center;
     color: #b4282d;
 }
-
 </style>
