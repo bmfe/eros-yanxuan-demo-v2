@@ -31,16 +31,18 @@ body {
     font-family: iconfont;
 }
 
-.wrapper {}
+.wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
 
 .main-list {
-    position: fixed;
-    top: 168px;
-    bottom: 90px;
-    left: 0;
-    right: 0;
-    /*margin-top: 167px;*/
-    /*margin-bottom: 90px;*/
+    margin-top: 54px;
+    margin-bottom: 90px;
+
 }
 
 .cell-button {

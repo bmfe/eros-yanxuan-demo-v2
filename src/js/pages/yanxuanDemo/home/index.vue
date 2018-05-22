@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <!-- <div class="status-bar"></div> -->
+        <div class="status-bar" style="background-color:#fafafa;" :style="{'height': statusHeight}"></div>
         <home-header></home-header>
         <scroller class="main-list" offset-accuracy="300px">
             <refresher @loadingDown="loadingDown"></refresher>
@@ -81,7 +81,8 @@ export default {
             goods2: [],
             goods3: [],
             showLoading: 'hide',
-            activeIndex: 0
+            activeIndex: 0,
+            statusHeight: Number.parseInt(this.statusBarHeight || weex.config.env.statusBarHeight || 40)
         }
     },
     methods: {
@@ -187,6 +188,5 @@ export default {
         },
     }
 }
-
 </script>
 <style lang="sass" src="./index.scss"></style>

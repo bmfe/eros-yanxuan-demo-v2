@@ -31,18 +31,11 @@ export default {
 }
 
 .wrapper {
-    position: fixed;
-    top: 0;
-    /*margin-top: 40;*/
-    left: 0;
-    right: 0;
-    height: 114px;
-    padding-top: 44px;
+    height: 70px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-around;
-    z-index: 101;
     background-color: #fafafa;
     opacity: .99;
 }

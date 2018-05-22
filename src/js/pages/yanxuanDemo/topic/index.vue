@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+        <div class="status-bar" style="background-color:#fafafa;" :style="{'height': statusHeight}"></div>
         <topic-header title="专题"></topic-header>
         <scroller class="main-list" offset-accuracy="300px">
             <refresher @loadingDown="loadingDown"></refresher>
@@ -32,7 +33,8 @@ export default {
     data() {
         return {
             topics: [],
-            articles: []
+            articles: [],
+            statusHeight: Number.parseInt(this.statusBarHeight || weex.config.env.statusBarHeight || 40)
         }
     },
     methods: {
@@ -89,7 +91,7 @@ export default {
 }
 
 .main-list {
-    margin-top: 113px;
+    /*margin-top: 70px;*/
     margin-bottom: 90px;
 }
 

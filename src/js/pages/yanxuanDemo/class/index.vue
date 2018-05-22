@@ -1,24 +1,27 @@
 <template>
-    <div class="wrapper">
+    <div>
+        <div class="status-bar" :style="{'height': statusHeight}"></div>
         <class-header></class-header>
-        <div class="class-list">
-            <scroller show-scrollbar="false">
-                <div class="j-uline" ref="jcLine"></div>
-                <text class="class-txt" v-for="(i,index) in classes" :class="[actIndex === index ? 'c-act' : '']" @click="chooseClass(index)" :ref="'class_' + index">{{i}}</text>
-            </scroller>
-        </div>
-        <scroller class="main-list" append="tree" paging-enabled="true" @scroll="onscroll" offset-accuracy="0" show-scrollbar="false" ref="scroll" id="scroll">
-            <div style="min-height: 1131px;" v-for="(item,index) in classes.length" @appear="appear(index)">
-                <image class="ad-img" resize="cover" src="http://yanxuan.nosdn.127.net/3ebd7addcc0d101d116052a57cec2f16.png"></image>
-                <text class="sub-tlt"> --- 推荐区分类 --- </text>
-                <div class="sub-box">
-                    <div class="sub-i" v-for="i in subclasses">
-                        <image class="i-img" resize="contain" :src="i.img"></image>
-                        <text class="i-name">{{i.name}}</text>
+        <div style="flex-direction: row;width: 750;flex: 1">
+            <div class="class-list">
+                <scroller show-scrollbar="false">
+                    <div class="j-uline" ref="jcLine"></div>
+                    <text class="class-txt" v-for="(i,index) in classes" :class="[actIndex === index ? 'c-act' : '']" @click="chooseClass(index)" :ref="'class_' + index">{{i}}</text>
+                </scroller>
+            </div>
+            <scroller class="main-list" append="tree" paging-enabled="true" @scroll="onscroll" offset-accuracy="0" show-scrollbar="false" ref="scroll" id="scroll">
+                <div style="min-height: 1131px;" v-for="(item,index) in classes.length" @appear="appear(index)">
+                    <image class="ad-img" resize="cover" src="http://yanxuan.nosdn.127.net/3ebd7addcc0d101d116052a57cec2f16.png"></image>
+                    <text class="sub-tlt"> --- 推荐区分类 --- </text>
+                    <div class="sub-box">
+                        <div class="sub-i" v-for="i in subclasses">
+                            <image class="i-img" resize="contain" :src="i.img"></image>
+                            <text class="i-name">{{i.name}}</text>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </scroller>
+            </scroller>
+        </div> 
     </div>
 </template>
 <script>
@@ -48,7 +51,8 @@ export default {
             classes: [],
             subclasses: [],
             actIndex: 0,
-            scrollHeight: 0
+            scrollHeight: 0,
+            statusHeight: Number.parseInt(this.statusBarHeight || weex.config.env.statusBarHeight || 40)
         }
     },
     methods: {
@@ -100,7 +104,6 @@ export default {
             //     this.activeIndex = formatOffset / this.scrollHeight
             // }
             // this.actIndex = parseInt(formatOffset / this.scrollHeight)
-
         },
         chooseClass(index) {
             this.actIndex = index
@@ -116,7 +119,6 @@ export default {
         appear(index) {
             console.log(index);
             this.chooseClass(index)
-            
         }
     }
 }
